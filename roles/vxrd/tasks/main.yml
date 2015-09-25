@@ -1,0 +1,3 @@
+- name: turn on LNV registration node daemon
+  template: src=daemon.j2 dest=/etc/default/vxrd
+  notify: restart vxrd  

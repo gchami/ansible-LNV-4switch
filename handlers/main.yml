@@ -1,0 +1,39 @@
+- name: restart vxsnd
+  shell: "service vxsnd restart"
+  register: vxsnd_restart
+  notify: print vxsnd restart error
+  changed_when: "vxsnd_restart.stderr != ''"
+  
+- name: print vxsnd restart error
+  debug: msg="{{vxsnd_restart.stderr}}"
+  failed_when: "vxsnd_restart.stderr is defined" 
+  
+- name: restart vxrd
+  shell: "service vxrd restart"
+  register: vxrd_restart
+  notify: print vxrd restart error
+  changed_when: "vxrd_restart.stderr != ''"
+  
+- name: print vxrd restart error
+  debug: msg="{{vxrd_restart.stderr}}"
+  failed_when: "vxrd_restart.stderr is defined" 
+  
+- name: reload networking
+  shell: "service networking reload"
+  register: networking_reload
+  notify: print networking reload error
+  changed_when: "networking_reload.stderr != ''"
+
+- name: print networking reload error
+  debug: msg="{{networking_reload.stderr}}"
+  failed_when: "networking_reload.stderr is defined"
+
+- name: restart quagga
+  shell: "service quagga restart"
+  register: quagga_restart
+  notify: print quagga restart error
+  changed_when: "quagga_restart.stderr != ''"
+
+- name: print quagga restart error
+  debug: msg="{{quagga_restart.stderr}}"
+  failed_when: "quagga_restart.stderr is defined"
