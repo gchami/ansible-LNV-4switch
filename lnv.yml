@@ -2,6 +2,7 @@
 - hosts: spine
   user: root
   roles:
+    - licensing
     - common
     - ospf
     - vxsnd
@@ -11,7 +12,10 @@
 - hosts: leaf
   user: root
   roles:
+    - licensing
+    - breakout-cable
     - common
+    - ospf
     - ospf
     - vxrd
   handlers:
