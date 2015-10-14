@@ -38,8 +38,3 @@
   debug: msg="{{quagga_restart.stderr}}"
   failed_when: "quagga_restart.stderr is defined"
 
-- name: restart switchd
-  shell: "service switchd restart"
-  register: switchd_restart
-  notify: print switchd restart error 
-  changed_when: "switchd_restart.stderr != ''"
