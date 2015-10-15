@@ -1,3 +1,5 @@
 - name: install license using http url
   cl_license: src='"http://wbench.lab.local/license.lic"'
-  notify: restart switchd
+
+- name: restart switchd
+  shell: service switchd restart
