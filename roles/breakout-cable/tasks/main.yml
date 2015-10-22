@@ -1,5 +1,7 @@
 - name: configure /etc/cumulus/ports.conf
   template: src=ports.j2 dest=/etc/cumulus/ports.conf
+  register: result
 
 - name: restarting switchd
   shell: service switchd restart
+  when: result|success
