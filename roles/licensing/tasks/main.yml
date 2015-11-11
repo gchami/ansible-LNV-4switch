@@ -4,4 +4,4 @@
 
 - name: restart switchd
   shell: service switchd restart
-   when: result|success
+  when: result|success
